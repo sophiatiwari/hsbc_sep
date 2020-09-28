@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript">
+
+	function validate(){
+		
+		var v1=document.getElementById("n1").value;
+		var v2=document.getElementById("n2").value;
+		var v3=document.getElementById("n3").value;
+		var v4=document.getElementById("n4").value;
+		
+	}
+	function generateCaptcha(){
+		var v=parseInt((Math.random())*10000);
+		document.getElementById("result").innerHTML="<input type=text disabled id=nb value="+v+"><input type=button value=refresh onClick=generateCaptcha()><br> enter above no<input type=text id=cc1><input type=button value=validate onclick=captchavalidate()>";
+		
+	}
+	function captchavalidate(){
+		var v1=document.getElementById("nb").value;
+		var v2=document.getElementById("cc1").value;
+		if(v1==v2){
+			document.getElementById("bb").disabled=false;
+		}
+	}
+</script>
+
+</head>
+<body>
+
+      <p align="center">Registration Page</p>
+	<table>
+	<form action="RegistrationServlet1" method="">    
+	
+		Name : <input type=text name=name id="n1" class="nn" required pattern="^(?![0-9]|[_].*$).*"> <br>
+		Password : <input type=password name=password id="n2" required pattern="^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{4,8}$"> <br>
+		Email : <input type=email name=email id="n3" required> <br>
+		Phone Number : <input type=number name=phone id="n4" required pattern ="[\+]\d{2}[\-]\d{10}"> <br>
+		Country : <input type=text name=country id="n5" required  onBlur="generateCaptcha()"> <br>
+		
+		<div id="result"></div>     
+		
+		<input type=submit value=Register id=bb onclick="validate()" disabled> <br>  
+	
+	</form>
+	</table>
+	
+</body>
+</html>
